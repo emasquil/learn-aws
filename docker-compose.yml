@@ -1,0 +1,24 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=predictions
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+    ports:
+      - "5432:5432"
+  api:
+    build: .
+    image: fastapi-pytorch
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    environment:
+      - PYTHONUNBUFFERED=1
+      - AWS_KEY=$AWS_KEY
+      - AWS_SECRET=$AWS_SECRET
+

@@ -1,0 +1,32 @@
+# Unnecessary project files
+README.md
+
+# Git files
+.gitignore
+.git
+
+# VS Code configuration directory
+.vscode
+
+# Virtualenv directory
+.venv
+
+# Pyenv and poetry files
+.poetry.lock
+pyproject.toml
+.python-version
+
+# Bash scripts
+*.sh
+
+# Docker files
+.dockerignore
+Dockerfile
+
+# Ignore Python cache files
+**/__pycache__
+**/*.pyc
+
+# Ignore ml_models directory as it may be big
+# Mount it as a volume instead in the Dockerfile
+app/ml_models

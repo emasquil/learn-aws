@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "pytorch-rest-api"
+version = "0.1.0"
+description = "REST API built with FastAPI that exposes an endpoint for calling a PyTorch model"
+authors = ["Facundo Parodi <facundo@tryolabs.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+torch= "1.4.0"
+fastapi = "^0.53.2"
+torchvision = "0.5.0"
+pyyaml = "^5.3.1"
+Pillow = "^7.1.0"
+python-multipart = "^0.0.5"
+sqlalchemy = "^1.3.22"
+boto3 = "^1.16.57"
+psycopg2= "^2.8.6"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^19.10b0", allow-prereleases = true}
+flake8 = "^3.7.9"
+uvicorn = "^0.11.3"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

@@ -1,0 +1,4 @@
+PROJECT_NAME: "Sample Project"
+API_PREFIX: "/api"
+MODEL:
+    DEVICE: "cpu"
