@@ -78,9 +78,8 @@ async def classify_s3(request: Request, data: api_models.InputImage):
         models.ClassificationResult-- JSON object with the classification result.
     """
     s3_path = data.image
-    s3_bucket = data.bucket
     try:
-        image = s3_integrations.get_image_from_s3(s3_bucket, s3_path)
+        image = s3_integrations.get_image_from_s3(s3_path)
     except s3_integrations.ImageNotAvailableError:
         raise HTTPException(
             status_code=HTTP_400_BAD_REQUEST, detail="Image not found in S3",

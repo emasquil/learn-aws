@@ -3,11 +3,18 @@ from copy import deepcopy
 from typing import Dict
 
 import yaml
-
 from app import exceptions
 
 BASE_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "base_config.yml")
 USER_CONFIG_PATH = "config.yml"
+
+
+def parse_env(value, key):
+    if type(value) is str and value.startswith("$"):
+        value = os.getenv(value[1:])
+    elif type(value) is dict:
+        value.update({k: parse_env(v, k) for k, v in value.items()})
+    return value
 
 
 def merge_configs(
@@ -31,6 +38,8 @@ def merge_configs(
     """
     merged_config = deepcopy(base_config)
     for key, override_value in override_config.items():
+        # Parse env variables in the config.yml
+        override_value = parse_env(override_value, key)
         if key in merged_config:
             base_value = merged_config[key]
             if type(base_value) != type(override_value):
@@ -64,7 +73,3 @@ with open(USER_CONFIG_PATH, "r") as config_file:
 
 config = merge_configs(base_config, user_config)
 postprocess_config(config)
-config["AWS"] = {
-    "ID": os.getenv("AWS_KEY"),
-    "SECRET": os.getenv("AWS_SECRET"),
-}

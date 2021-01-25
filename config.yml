@@ -5,8 +5,12 @@ MODEL:
     # DEVICE: "cpu" | "cuda:0" | "cuda:1" | ...
     DEVICE: "cpu"
 DB:
-    DATABASE: "predictions"
-    USER: "postgres"
-    PASSWORD: "postgres"
-    HOST: "db"
-    PORT: "5432"
+    DATABASE: $DATABASE
+    USER: $DATABASE_USER
+    PASSWORD: $DATABASE_PASSWORD
+    HOST: $DATABASE_HOST
+    PORT: 5432
+AWS:
+    ID: $AWS_KEY
+    SECRET: $AWS_SECRET
+S3_BUCKET: $S3_BUCKET
