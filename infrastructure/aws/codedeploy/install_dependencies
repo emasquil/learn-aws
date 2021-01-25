@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo apt update
+sudo apt install -y python3-pip jq
+# Installing poetry
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
