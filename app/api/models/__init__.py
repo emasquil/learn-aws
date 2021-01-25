@@ -13,3 +13,7 @@ class InputImage(BaseModel):
     """Path to the image in S3"""
 
     image: str
+
+class HealthCheck(BaseModel):
+    """Health check response"""
+    statusCode: int
