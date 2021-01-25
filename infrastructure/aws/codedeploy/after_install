@@ -2,6 +2,7 @@
 mkdir -p /var/log/gunicorn
 
 cd /deploy || exit 2
+export PATH="$HOME/.poetry/bin:$PATH"
 poetry install
 
 AWS_DEFAULT_REGION="$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)"
