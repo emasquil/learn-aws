@@ -5,4 +5,5 @@ AWS_DEFAULT_REGION="$(curl -s http://169.254.169.254/latest/dynamic/instance-ide
 export AWS_DEFAULT_REGION
 
 export PATH="$HOME/.poetry/bin:$PATH"
+export ENVIRONMENT=PROD
 poetry run gunicorn --config infrastructure/aws/codedeploy/gunicorn.ec2.conf.py app.main:app
