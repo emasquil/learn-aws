@@ -29,13 +29,13 @@ async def startup_function():
             checkpoint cannot be loaded.
     """
     logging.getLogger().setLevel(logging.INFO)
-    # try:
-    #     model = utils.load_model(
-    #         config["MODEL"]["PATH"], device=config["MODEL"]["DEVICE"]
-    #     )
-    # except Exception as e:
-    #     raise exceptions.ModelError(f"Error loading model: {e}")
+    try:
+        model = utils.load_model(
+            config["MODEL"]["PATH"], device=config["MODEL"]["DEVICE"]
+        )
+    except Exception as e:
+        raise exceptions.ModelError(f"Error loading model: {e}")
 
-    # app.state.model = model
+    app.state.model = model
 
     db_integration.create_table()

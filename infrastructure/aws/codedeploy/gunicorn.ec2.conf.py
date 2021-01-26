@@ -12,5 +12,5 @@ errorlog = "/var/log/gunicorn/error.log"
 keepalive = 1
 timeout = 300
 
-workers = 5
+workers = 2
 worker_class = "uvicorn.workers.UvicornWorker"
