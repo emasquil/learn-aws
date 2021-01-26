@@ -14,6 +14,8 @@ class InputImage(BaseModel):
 
     image: str
 
+
 class HealthCheck(BaseModel):
     """Health check response"""
+
     statusCode: int
