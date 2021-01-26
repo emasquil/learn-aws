@@ -1,4 +1,4 @@
-import logging
+from fastapi.logger import logger
 import os
 from copy import deepcopy
 from typing import Dict
@@ -29,7 +29,7 @@ def get_aws_env(key):
         parameter = response.get("Parameter")
         return parameter.get("Value")
     except ClientError as e:
-        logging.warning(f"Parameter {key} not found: {e}")
+        logger.warning(f"Parameter {key} not found: {e}")
 
 
 def parse_env(value, key):
@@ -102,4 +102,5 @@ with open(USER_CONFIG_PATH, "r") as config_file:
 
 config = merge_configs(base_config, user_config)
 postprocess_config(config)
-
+config["ENVIRONMENT"] = ENVIRONMENT
+logger.debug(config)

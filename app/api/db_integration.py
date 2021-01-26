@@ -1,5 +1,5 @@
 from time import time
-import logging
+from fastapi.logger import logger
 
 from app.core.config import config
 from sqlalchemy import create_engine
@@ -25,12 +25,12 @@ def create_table():
     try:
         if not db.dialect.has_table(db, "predictions"):
             prediction_table.create()
-            logging.info("Prediction table created")
+            logger.info("Prediction table created")
         else:
-            logging.info("Prediction table already exists")
+            logger.info("Prediction table already exists")
             pass
     except Exception as e:
-        logging.error(f"Error when trying to create/connect to the db {e}")
+        logger.error(f"Error when trying to create/connect to the db {e}")
 
 
 def insert_prediction(image_id: str, prediction: str):
@@ -42,7 +42,7 @@ def insert_prediction(image_id: str, prediction: str):
         )
         return conn.execute(insert)
     except Exception as e:
-        logging.error(f"Error when inserting to the db {e}")
+        logger.error(f"Error when inserting to the db {e}")
     finally:
         if conn is not None:
             conn.close()
